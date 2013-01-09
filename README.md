@@ -10,14 +10,15 @@ The project itself is self-explanatory, feel free to modify it to your needs, if
 
     luaDict(L                                           /* L is Lua State */
             , "sample_dictionary"                       /* Table name in global space */
-            , 7                                         /* Number of kvs that we are including in our dictionary */
+            , 8                                         /* Number of kvs that we are including in our dictionary */
             , kvPairWithNumber("key1", 1)               /* Keys are always strings, this is a numeric value */
             , kvPairWithNumber("key2", 2)
             , kvPairWithString("key3", "string 3")      /* This is a string value */
             , kvPairWithNumber("key4", 4)
             , kvPairWithNumber("key5", 5)
             , kvPairWithNumber("key6", 6)
-            , kvPairWithNumber("key7", 7));
+            , kvPairWithNumber("key7", 7)
+            , kvPairWithCFunction("callback", &c_function));
 
 ### This table should print out like this
 
@@ -25,6 +26,7 @@ The project itself is self-explanatory, feel free to modify it to your needs, if
    ["key6"] = 6;
    ["key7"] = 7;
    ["key2"] = 2;
+   ["callback"] = reference
    ["key1"] = 1;
    ["key3"] = "string 3";
    ["key4"] = 4;

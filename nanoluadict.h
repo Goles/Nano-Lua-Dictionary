@@ -7,19 +7,21 @@ enum EVENT_TYPE
 {
    NUMBER,
    STRING,
+   CFUNCTION,
 };
 
 struct kvPair {
     enum EVENT_TYPE type;
     char *key;
-    char *text;
-    float num;
+    void *value;
 };
 
 typedef struct kvPair KeyValuePair;
 
 KeyValuePair kvPairWithNumber(char *key, float number);
 KeyValuePair kvPairWithString(char *key, char *string);
+KeyValuePair kvPairWithCFunction(char *key, void *function);
+
 void luaDict(lua_State *L, char *tableName, int kvCount, ...);
 
 #endif
