@@ -7,7 +7,6 @@
 //
 
 #include "nanoluadict.h"
-#include <stdlib.h>
 
 KeyValuePair kvPairWithNumber(char *key, float number) {
     KeyValuePair kv;
