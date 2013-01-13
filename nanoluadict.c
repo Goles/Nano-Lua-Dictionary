@@ -13,7 +13,7 @@ KeyValuePair kvPairWithNumber(char *key, float number)
     KeyValuePair kv;
     kv.key = key;
     kv.type = NUMBER;
-    kv.value.numericValue = aux;
+    kv.value.numericVal = number;
     return kv;
 }
 
