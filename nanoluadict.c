@@ -8,54 +8,53 @@
 
 #include "nanoluadict.h"
 
-KeyValuePair kvPairWithNumber(char *key, float number) {
+KeyValuePair kvPairWithNumber(char *key, float number)
+{
     KeyValuePair kv;
-    float *aux;
-    aux = malloc(sizeof(float));
-    *aux = number;
     kv.key = key;
     kv.type = NUMBER;
-    kv.value = aux;
+    kv.value.numericValue = aux;
     return kv;
 }
 
-KeyValuePair kvPairWithString(char *key, char *string) {
+KeyValuePair kvPairWithString(char *key, char *string)
+{
     KeyValuePair kv;
     kv.key = key;
     kv.type = STRING;
-    kv.value = string;
+    kv.value.stringVal = string;
     return kv;
 }
 
-KeyValuePair kvPairWithCFunction(char *key, void *function) {
+KeyValuePair kvPairWithCFunction(char *key, void *function)
+{
     KeyValuePair kv;
     kv.key = key;
     kv.type = CFUNCTION;
-    kv.value = function;
+    kv.value.genericVal = function;
     return kv;
 }
 
 void luaDict(lua_State *L, char *tableName, int kvCount, ...)
 {
-    int i = 0;
+    int i;
     lua_newtable(L);
     va_list arguments;
     va_start(arguments, kvCount);
 
-    for (; i < kvCount; ++i) {
+    for (i = 0; i < kvCount; ++i) {
         KeyValuePair kv = va_arg(arguments, KeyValuePair);
         lua_pushstring(L, kv.key);
 
         switch (kv.type) {
             case NUMBER:
-                lua_pushnumber(L, *(float *)kv.value);
-                free(kv.value);
+                lua_pushnumber(L, kv.value.numericVal);
                 break;
             case STRING:
-                lua_pushstring(L, (char *)kv.value);
+                lua_pushstring(L, kv.value.stringVal);
                 break;
             case CFUNCTION:
-                lua_pushcfunction(L, kv.value);
+                lua_pushcfunction(L, kv.value.genericVal);
                 break;
             default:
                 break;

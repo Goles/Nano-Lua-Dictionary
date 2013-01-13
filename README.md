@@ -18,17 +18,5 @@ The project itself is self-explanatory, feel free to modify it to your needs, if
             , kvPairWithNumber("key5", 5)
             , kvPairWithNumber("key6", 6)
             , kvPairWithNumber("key7", 7)
-            , kvPairWithCFunction("callback", &c_function));
+            , kvPairWithCFunction("callback", &c_function)); /* This is for a function callback */
 
-### This table should print out like this
-
-{
-   ["key6"] = 6;
-   ["key7"] = 7;
-   ["key2"] = 2;
-   ["callback"] = reference
-   ["key1"] = 1;
-   ["key3"] = "string 3";
-   ["key4"] = 4;
-   ["key5"] = 5;
-}

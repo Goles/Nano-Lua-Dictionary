@@ -3,8 +3,13 @@
 
 #include <lua.h>
 
-enum EVENT_TYPE
-{
+typedef union {
+    void *genericVal;
+    char *stringVal;
+    float numericVal;
+} Value;
+
+enum EVENT_TYPE {
    NUMBER,
    STRING,
    CFUNCTION,
@@ -13,7 +18,7 @@ enum EVENT_TYPE
 struct kvPair {
     enum EVENT_TYPE type;
     char *key;
-    void *value;
+    Value value;
 };
 
 typedef struct kvPair KeyValuePair;
